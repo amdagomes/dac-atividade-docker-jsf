@@ -1,8 +1,8 @@
 .is-fullheight.is-vcentered{
-   min-height: 100vh;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }   
 .fullwidth{
     width: 100%;
