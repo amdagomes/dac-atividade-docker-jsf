@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Contato;
+package ifpb.edu.br.contato;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,6 +20,8 @@ public class Contato implements Serializable {
     private String telefone;
     private LocalDate dataNascimento;
 
+    public Contato(){}
+    
     public String getNome() {
         return nome;
     }
