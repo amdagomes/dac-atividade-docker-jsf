@@ -1,0 +1,30 @@
+.is-fullheight.is-vcentered{
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}   
+.fullwidth{
+    width: 100%;
+}
+.pesquisa{
+    width: 350px;
+}
+.pesquisa input{
+    max-width: 250px;
+    border-right-color: transparent;
+    float: left;
+}
+.pesquisa .button{
+    margin-left: -5px;
+}
+.logoff a{
+    color: white;
+    margin-right: 10px;
+}
+.modal{
+    overflow: visible !important;
+}
+.clear{
+    clear: both;
+}

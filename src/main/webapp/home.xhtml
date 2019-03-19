@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Atividade DAC</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+        <link rel="stylesheet" href="css/style.css"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar is-dark" role="navigation">
+            <div class="navbar-brand">
+                <p class="navbar-item is-size-3" href="https://bulma.io">
+                    DAC 
+                </p>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a  href="#cadastro-contado" rel="modal:open" class="navbar-item">
+                        Cadastrar Contato
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <h:form class="pesquisa">
+                            <h:inputText class="input" value="#"/>
+                            <h:commandButton value="Pesquisar" class="button is-primary" action="#"/>
+                        </h:form>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="navbar-item logoff">
+                        <h:form>
+                            <h:commandLink action="#">Sair</h:commandLink>
+                        </h:form>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="container is-fullhd">
+            <div class="media">
+                <div class="media-left">
+                    <div class="columns is-vcentered ">
+                        <div class="column">
+                            <h3 class="is-size-3">Contatos</h3>
+                        </div>
+                        <div class="column">
+                            <h:form>
+                                <h:commandLink action="#">
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </h:commandLink>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <div class="media-content"></div>
+                <div class="media-right">
+                    <h:form>
+                        <h:commandLink action="#">
+                            Ordernar
+                        </h:commandLink>
+                    </h:form>
+                </div>
+            </div>
+
+            <section class="section">
+                <div class="box">
+                    <div class="media">
+                        <div class="media-content">
+                            <div class="columns">
+                                <div class="column">
+                                    <p>Nome: #</p>
+                                </div>
+                                <div class="column">
+                                    <p>Email: #</p>
+                                </div>
+                                <div class="column">
+                                    <p>Telefone: #</p>
+                                </div>
+                                <div class="column">
+                                    <p>Data de nascimento: #</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <h:form>
+                                <h:commandLink action="#">
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                </h:commandLink>
+                                <h:commandLink action="#">
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </h:commandLink>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div id="cadastro-contado" class="modal">
+                <p class="is-size-3">Cadastrar Contato</p>
+                <h:form>
+                    <div class="field">
+                        <label class="label">Nome</label>
+                        <div class="control">
+                            <h:inputText class="input" value="#"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <h:inputText class="input" value="#"/>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Telefone</label>
+                                <div class="control">
+                                    <h:inputText class="input" value="#"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Data de nascimento</label>
+                                <div class="control">
+                                    <h:inputText class="input" value="#"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h:commandButton class="button is-primary" action="#" value="Cadastrar"/>
+                    <a href="#" rel="modal:close" class="button is-light">Cancelar</a>
+                </h:form>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>       
+        <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    </h:body>
+</html>
+
