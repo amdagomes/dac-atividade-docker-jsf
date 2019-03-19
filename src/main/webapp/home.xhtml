@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Atividade DAC</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -55,15 +57,6 @@
                         <div class="column">
                             <h3 class="is-size-3">Contatos</h3>
                         </div>
-                        <div class="column">
-                            <h:form>
-                                <h:commandLink action="#">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                </h:commandLink>
-                            </h:form>
-                        </div>
                     </div>
                 </div>
                 <div class="media-content"></div>
@@ -77,54 +70,17 @@
             </div>
 
             <section class="section">
-                <div class="box">
-                    <div class="media">
-                        <div class="media-content">
-                            <div class="columns">
-                                <div class="column">
-                                    <p>Nome: #</p>
-                                </div>
-                                <div class="column">
-                                    <p>Email: #</p>
-                                </div>
-                                <div class="column">
-                                    <p>Telefone: #</p>
-                                </div>
-                                <div class="column">
-                                    <p>Data de nascimento: #</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media-right">
-                            <h:form>
-                                <h:commandLink action="#">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-edit"></i>
-                                    </span>
-                                </h:commandLink>
-                                <h:commandLink action="#">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-times"></i>
-                                    </span>
-                                </h:commandLink>
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div id="cadastro-contado" class="modal">
-                <p class="is-size-3">Cadastrar Contato</p>
-                <h:form>
+                <h:form rendered="#{controllerContato.editando}">
                     <div class="field">
                         <label class="label">Nome</label>
                         <div class="control">
-                            <h:inputText class="input" value="#"/>
+                            <h:inputText class="input" value="#{controllerContato.contato.nome}"/>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <h:inputText class="input" value="#"/>
+                            <h:inputText class="input" value="#{controllerContato.contato.email}"/>
                         </div>
                     </div>
                     <div class="columns">
@@ -132,7 +88,7 @@
                             <div class="field">
                                 <label class="label">Telefone</label>
                                 <div class="control">
-                                    <h:inputText class="input" value="#"/>
+                                    <h:inputText class="input" value="#{controllerContato.contato.telefone}"/>
                                 </div>
                             </div>
                         </div>
@@ -140,12 +96,89 @@
                             <div class="field">
                                 <label class="label">Data de nascimento</label>
                                 <div class="control">
-                                    <h:inputText class="input" value="#"/>
+                                    <h:inputText class="input" value="#{controllerContato.contato.nascimento}">
+                                        <f:convertDateTime pattern="d-M-yyyy" />
+                                    </h:inputText>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h:commandButton class="button is-primary" action="#" value="Cadastrar"/>
+                    <h:commandButton class="button is-primary" action="#{controllerContato.atualizar()}" value="Atualizar"/>
+                </h:form>
+                
+                <c:forEach items="#{controllerContato.listar()}" var="c">
+                    <div class="box">
+                        <div class="media">
+                            <div class="media-content">
+                                <div class="columns">
+                                    <div class="column">
+                                        <p>Nome: #{c.nome}</p>
+                                    </div>
+                                    <div class="column">
+                                        <p>Email: #{c.email}</p>
+                                    </div>
+                                    <div class="column">
+                                        <p>Telefone: #{c.telefone}</p>
+                                    </div>
+                                    <div class="column">
+                                        <p>Data de nascimento: #{c.nascimento}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <h:form>
+                                    <h:commandLink action="#{controllerContato.editar(c)}">
+                                        <span class="icon is-medium">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </h:commandLink>
+                                    <h:commandLink action="#{controllerContato.remover(c)}">
+                                        <span class="icon is-medium">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </section>
+            <div id="cadastro-contado" class="modal">
+                <p class="is-size-3">Cadastrar Contato</p>
+                <h:form>
+                    <div class="field">
+                        <label class="label">Nome</label>
+                        <div class="control">
+                            <h:inputText class="input" value="#{controllerContato.contato.nome}"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <h:inputText class="input" value="#{controllerContato.contato.email}"/>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Telefone</label>
+                                <div class="control">
+                                    <h:inputText class="input" value="#{controllerContato.contato.telefone}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Data de nascimento</label>
+                                <div class="control">
+                                    <h:inputText class="input" value="#{controllerContato.contato.nascimento}">
+                                        <f:convertDateTime pattern="d-M-yyyy" />
+                                    </h:inputText>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h:commandButton class="button is-primary" action="#{controllerContato.cadastrar()}" value="Cadastrar"/>
                     <a href="#" rel="modal:close" class="button is-light">Cancelar</a>
                 </h:form>
             </div>
