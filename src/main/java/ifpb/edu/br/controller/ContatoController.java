@@ -5,8 +5,11 @@
  */
 package ifpb.edu.br.controller;
 
+import ifpb.edu.br.contato.ContadoDao;
+import ifpb.edu.br.contato.ContatoDaoIF;
 import ifpb.edu.br.contato.Contato;
 import ifpb.edu.br.contato.ListaContato;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.RequestScoped;
 
@@ -18,9 +21,40 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ContatoController {
     
+    private ContatoDaoIF daoContato = new ContadoDao();
     ListaContato lc = new ListaContato();
-    Contato c = new Contato();
+    private List<Contato> contatos = new ArrayList<>();
     
+    private Contato contato = new Contato();
+    private boolean editando = false;
+    
+    public String cadastrar(){
+        this.daoContato.persist(this.contato);
+        this.contato = new Contato();
+        return "faces/home.xhtml";
+    }
+    
+    public String editar(Contato c){
+        this.contato = c;
+        this.editando = true;
+        return "faces/home.xhtml";
+    }
+    
+    public String atualizar(){
+        this.daoContato.edit(contato);
+        this.contato = new Contato();
+        this.editando = false;
+        return "faces/home.xhtml";
+    }
+    
+    public String remover(Contato c){
+        this.daoContato.remove(c);
+        return "faces/home.xhtml";
+    }
+    
+    public List<Contato> listar(){
+        return this.daoContato.list();
+    }
     
     public List<Contato> listContatoAlf(){
      
@@ -36,14 +70,28 @@ public class ContatoController {
         this.lc = lc;
     }
 
-    public Contato getC() {
-        return c;
+    public List<Contato> getContatos() {
+        return contatos;
     }
 
-    public void setC(Contato c) {
-        this.c = c;
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
     }
-    
-    
-    
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    public boolean isEditando() {
+        return editando;
+    }
+
+    public void setEditando(boolean editando) {
+        this.editando = editando;
+    }
+ 
 }
