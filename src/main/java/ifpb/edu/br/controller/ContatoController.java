@@ -11,6 +11,7 @@ import ifpb.edu.br.contato.Contato;
 import ifpb.edu.br.contato.ListaContato;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 
 /**
@@ -20,62 +21,77 @@ import javax.faces.bean.RequestScoped;
 @javax.faces.bean.ManagedBean(name = "controladorcontato")
 @RequestScoped
 public class ContatoController {
-    
+
     private ContatoDaoIF daoContato = new ContadoDao();
     ListaContato lc = new ListaContato();
-    private List<Contato> contatos = new ArrayList<>();
-    
+    private List<Contato> listContatos = new ArrayList<>();
+    private List<Contato> resultadoBusca = new ArrayList<>();
+
     private Contato contato = new Contato();
+    private String nome;
     private boolean editando = false;
+
+    @PostConstruct
+    public void init(){
+        listar();
+    }
     
-    public String cadastrar(){
+    public String cadastrar() {
         this.daoContato.persist(this.contato);
         this.contato = new Contato();
-        return "faces/home.xhtml";
+        return null;
     }
-    
-    public String editar(Contato c){
+
+    public String editar(Contato c) {
         this.contato = c;
         this.editando = true;
-        return "faces/home.xhtml";
+        return null;
     }
-    
-    public String atualizar(){
-        this.daoContato.edit(contato);
+
+    public String atualizar() {
+        System.out.println("Controler contato id: " + this.contato.getId());
+        this.daoContato.edit(this.contato);
         this.contato = new Contato();
         this.editando = false;
-        return "faces/home.xhtml";
+        listar();
+        return null;
     }
-    
-    public String remover(Contato c){
+
+    public String remover(Contato c) {
         this.daoContato.remove(c);
-        return "faces/home.xhtml";
+        listar();
+        return null;
     }
     
-    public List<Contato> listar(){
-        return this.daoContato.list();
+    public String listar() {
+        this.listContatos = this.daoContato.list();
+        return null;
+    }
+
+    public String listContatoAlf() {
+        this.listContatos = this.lc.ordemAlf();
+        return null;
     }
     
-    public List<Contato> listContatoAlf(){
-     
-     return this.lc.ordemAlf();
-    
+    public String buscarPorNome(){
+        this.resultadoBusca = this.lc.buscarporNome(nome);
+        return "faces/resultado-busca.xhtml";
     }
 
-    public ListaContato getLc() {
-        return lc;
+    public List<Contato> getListContatos() {
+        return listContatos;
     }
 
-    public void setLc(ListaContato lc) {
-        this.lc = lc;
+    public void setListContatos(List<Contato> listContatos) {
+        this.listContatos = listContatos;
     }
 
-    public List<Contato> getContatos() {
-        return contatos;
+    public List<Contato> getResultadoBusca() {
+        return resultadoBusca;
     }
 
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
+    public void setResultadoBusca(List<Contato> resultadoBusca) {
+        this.resultadoBusca = resultadoBusca;
     }
 
     public Contato getContato() {
@@ -86,6 +102,14 @@ public class ContatoController {
         this.contato = contato;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public boolean isEditando() {
         return editando;
     }
@@ -93,5 +117,5 @@ public class ContatoController {
     public void setEditando(boolean editando) {
         this.editando = editando;
     }
- 
+
 }

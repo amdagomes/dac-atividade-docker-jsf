@@ -5,7 +5,6 @@
  */
 package ifpb.edu.br.contato;
 
-import ifpb.edu.br.model.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -31,14 +30,14 @@ public class ListaContato {
 
     }
 
-    public Contato buscarporNome(String nome) {
+    public List<Contato> buscarporNome(String nome) {
         try {
             nome = nome.toUpperCase();
-            String sql = " SELECT c FROM Contato c where UPPER(c.nome) = : nome";
+            String sql = " SELECT c FROM Contato c where UPPER(c.nome) LIKE :nome";
             TypedQuery<Contato> query = em.createQuery(sql, Contato.class);
-            query.setParameter("nome", nome);
-            Contato c = query.getSingleResult();
-            return c;
+            query.setParameter("nome", nome +'%');
+            List<Contato> lista = query.getResultList();
+            return lista;
         } catch (NoResultException ex) {
             return null;
 

@@ -1,3 +1,6 @@
+.invisible{
+    display: none;
+}
 .is-fullheight.is-vcentered{
     min-height: 100vh;
     display: flex;

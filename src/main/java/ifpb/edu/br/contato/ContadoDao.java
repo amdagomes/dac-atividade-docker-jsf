@@ -26,8 +26,13 @@ public class ContadoDao implements ContatoDaoIF {
 
     @Override
     public void edit(Contato contato) {
+        Contato c = em.find(Contato.class, contato.getId());
+        c.setNome(contato.getNome());
+        c.setEmail(contato.getEmail());
+        c.setTelefone(contato.getTelefone());
+        c.setDataNascimento(contato.getDataNascimento());
         em.getTransaction().begin();
-        em.merge(contato);
+        em.merge(c);
         em.getTransaction().commit();
     }
 

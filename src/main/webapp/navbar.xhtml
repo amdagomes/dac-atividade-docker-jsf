@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Atividade DAC</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+        <link rel="stylesheet" href="css/style.css"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar is-dark" role="navigation">
+            <div class="navbar-brand">
+                <p class="navbar-item is-size-3" href="https://bulma.io">
+                    DAC 
+                </p>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a  href="faces/home.xhtml" class="navbar-item">
+                        Inicio
+                    </a>
+                    <a  href="#cadastro-contado" rel="modal:open" class="navbar-item">
+                        Cadastrar Contato
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <h:form class="pesquisa">
+                            <h:inputText class="input" value="#{controladorcontato.nome}"/>
+                            <h:commandButton value="Pesquisar" class="button is-primary" action="#{controladorcontato.buscarPorNome()}"/>
+                        </h:form>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="navbar-item logoff">
+                        <h:form>
+                            <h:commandLink action="#{controladorLogin.logout()}">Sair</h:commandLink>
+                        </h:form>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </h:body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:include src="navbar.xhtml"/>
+        <div class="container">
+             <h3 class="is-size-3">Resultado da busca</h3>
+             
+             <section class="section">
+                 
+                 <c:forEach items="#{controladorcontato.resultadoBusca}" var="c">
+                     <div class="box">
+                         <div class="media">
+                             <div class="media-content">
+                                 <div class="columns">
+                                     <div class="column">
+                                         <p>Nome: #{c.nome}</p>
+                                     </div>
+                                     <div class="column">
+                                         <p>Email: #{c.email}</p>
+                                     </div>
+                                     <div class="column">
+                                         <p>Telefone: #{c.telefone}</p>
+                                     </div>
+                                     <div class="column">
+                                         <p>Data de nascimento: #{c.dataNascimento}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </c:forEach>
+             </section>
+        </div>
+        <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    </h:body>
+</html>
