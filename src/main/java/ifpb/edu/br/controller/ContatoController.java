@@ -39,6 +39,7 @@ public class ContatoController {
     public String cadastrar() {
         this.daoContato.persist(this.contato);
         this.contato = new Contato();
+        listar();
         return null;
     }
 
