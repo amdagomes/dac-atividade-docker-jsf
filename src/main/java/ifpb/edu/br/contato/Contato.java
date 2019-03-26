@@ -30,9 +30,10 @@ public class Contato implements Serializable {
     private String nome;
     private String email;
     private String telefone;
-//    private LocalDate dataNascimento;
-    @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    
+    private LocalDate dataNascimento;
+   
+    
 
     public Contato(){}
 
