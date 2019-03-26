@@ -45,9 +45,11 @@ public class ListaContato {
 
     }
 
-    public List<Contato> agruparPorLetra() {
-        String sql = " SELECT c FROM Contato c ORDER BY nome asc";
+    public List<Contato> agruparPorLetra( String letra) {
+        letra= letra.toLowerCase();
+        String sql = " SELECT c FROM Contato c  where UPPER(c.nome) LIKE :letra ORDER BY c.nome";
         TypedQuery<Contato> query = em.createQuery(sql, Contato.class);
+         query.setParameter("letra",letra +'%');
         List<Contato> resultList = query.getResultList();
 
         return resultList;
