@@ -29,7 +29,7 @@ public class Contato implements Serializable {
     private String email;
     private String telefone;
     private LocalDate dataNascimento;
-
+    
     public Contato(){}
 
     public long getId() {
