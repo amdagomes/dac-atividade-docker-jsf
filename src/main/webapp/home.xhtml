@@ -31,7 +31,7 @@
 
             <section class="section">
                 <h:form rendered="#{controladorcontato.editando}">
-                    <h:inputText value="#{controladorcontato.contato.id}"/>
+                    <h:inputHidden value="#{controladorcontato.contato.id}"/>
                     <div class="field">
                         <label class="label">Nome</label>
                         <div class="control">
@@ -57,9 +57,7 @@
                             <div class="field">
                                 <label class="label">Data de nascimento</label>
                                 <div class="control">
-                                    <h:inputText class="input" value="#{controladorcontato.contato.dataNascimento}">
-                                        <f:convertDateTime pattern="d-M-yyyy" />
-                                    </h:inputText>
+                                    <h:inputText class="input" converter="converter.LocalDate" value="#{controladorcontato.contato.dataNascimento}"/>
                                 </div>
                             </div>
                         </div>
@@ -132,9 +130,7 @@
                             <div class="field">
                                 <label class="label">Data de nascimento</label>
                                 <div class="control">
-                                    <h:inputText class="input" value="#{controladorcontato.contato.dataNascimento}">
-                                        <f:convertDateTime pattern="d-M-yyyy" />
-                                    </h:inputText>
+                                    <h:inputText class="input" converter="converter.LocalDate" value="#{controladorcontato.contato.dataNascimento}"/>
                                 </div>
                             </div>
                         </div>
