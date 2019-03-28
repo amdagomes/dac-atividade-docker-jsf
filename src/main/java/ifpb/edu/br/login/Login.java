@@ -5,11 +5,7 @@
  */
 package ifpb.edu.br.login;
 
-import ifpb.edu.br.model.Usuario;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -17,20 +13,15 @@ import javax.persistence.TypedQuery;
  */
 public class Login {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("DAC")
-            .createEntityManager();
+    private final String USUARIO = "admin";
+    private final String SENHA = "admin";
 
     public boolean autenticar(String email, String senha) {
         try {
-
-            String sql = "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha ";
-            TypedQuery<Usuario> query = em.createQuery(sql, Usuario.class);
-            query.setParameter("email", email);
-            query.setParameter("senha", senha);
-            Usuario u = query.getSingleResult();
-
-            return true;
+            if (this.USUARIO.equals(email) && this.SENHA.equals(senha)) {
+                return true;
+            }
+            return false;
         } catch (NoResultException ex) {
             return false;
 

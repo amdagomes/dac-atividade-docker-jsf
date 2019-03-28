@@ -12,8 +12,6 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -30,10 +28,8 @@ public class Contato implements Serializable {
     private String nome;
     private String email;
     private String telefone;
-//    private LocalDate dataNascimento;
-    @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
-
+    private LocalDate dataNascimento;
+    
     public Contato(){}
 
     public long getId() {
@@ -68,22 +64,22 @@ public class Contato implements Serializable {
         this.telefone = telefone;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 43 * hash + Objects.hashCode(this.nome);
-        hash = 43 * hash + Objects.hashCode(this.email);
-        hash = 43 * hash + Objects.hashCode(this.telefone);
-        hash = 43 * hash + Objects.hashCode(this.dataNascimento);
+        int hash = 3;
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.telefone);
+        hash = 97 * hash + Objects.hashCode(this.dataNascimento);
         return hash;
     }
 
@@ -121,5 +117,5 @@ public class Contato implements Serializable {
     public String toString() {
         return "Contato{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", dataNascimento=" + dataNascimento + '}';
     }
-    
+
 }
