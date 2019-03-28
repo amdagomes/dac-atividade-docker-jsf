@@ -46,6 +46,7 @@
     </dependencies>
 
     <build>
+	<finalName>dac-atividade-docker-jsf</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
