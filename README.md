@@ -17,3 +17,9 @@ Desenvolva uma aplicação que realize os seguintes requisitos para a entidade C
 #### Login
 - Email: admin
 - Senha: admin
+
+Alunas:
+<br/>
+Amanda Gomes - [Github](https://github.com/amdagomes)
+<br/>
+Rafaela Ramos - [Github](https://github.com/RafaelaRamos)
